@@ -1,0 +1,98 @@
+export const pizzas = [
+  {
+    id: 1,
+    name: 'Четыре сыра',
+    price: 399,
+    imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf48e02377e9adc0b190c9676321.avif',
+  },
+  {
+    id: 2,
+    name: 'Сырная',
+    price: 289,
+    imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf40eb1171aabe90b1b3ce07c0c5.avif',
+  },
+  {
+    id: 3,
+    name: 'Чоризо фреш',
+    price: 289,
+    imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf4f806371f19d529f9e9e7dba36.avif',
+  },
+  {
+    id: 4,
+    name: 'Ветчина и сыр',
+    price: 339,
+    imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf283b2372ea8e7cfc8adae9ea84.avif',
+  },
+  {
+    id: 5,
+    name: 'Двойной цыпленок',
+    price: 349,
+    imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf3e424371b49f0b8d7dbe320a70.avif',
+  },
+  {
+    id: 6,
+    name: 'Креветка и песто',
+    price: 519,
+    imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf4d218b75d4a3e667fc2f6d7643.avif',
+  },
+  {
+    id: 7,
+    name: 'Чилл Грилл',
+    price: 399,
+    imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf4624de7324966f2fc62c3ca673.avif',
+  },
+  {
+    id: 8,
+    name: 'Ветчина и грибы',
+    price: 369,
+    imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198c659b357718f9c77ad0dc392dadf.avif',
+  },
+  {
+    id: 9,
+    name: 'Аррива!',
+    price: 469,
+    imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf2e5d2973a4bf5ec61161496f91.avif',
+  },
+  {
+    id: 10,
+    name: 'Креветки со сладким чили',
+    price: 509,
+    imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf5147f27780a3290a82692e7a36.avif',
+  },
+  {
+    id: 11,
+    name: 'Бефстроганов',
+    price: 549,
+    imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf5205fb78abb9ad479b6e47304c.avif',
+  },
+  {
+    id: 12,
+    name: 'Карбонара',
+    price: 479,
+    imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf2b03447079941f2d5ac6e986a9.avif',
+  },
+  {
+    id: 13,
+    name: 'Жюльен',
+    price: 429,
+    imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf4e67f474f991f04a46a49af5e6.avif',
+  },
+  {
+    id: 14,
+    name: 'Песто',
+    price: 459,
+    imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf443ff778d0a9a9b3e628d39b95.avif',
+  },
+  {
+    id: 15,
+    name: 'Мясная',
+    price: 479,
+    imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf3b88d5772695c7f9e557b5b196.avif',
+  },
+  {
+    id: 16,
+    name: 'Бургер-пицца',
+    price: 399,
+    imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf3fab7976678d811111bb2e8cb9.avif',
+  },
+];
