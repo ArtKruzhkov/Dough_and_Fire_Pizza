@@ -1,22 +1,53 @@
-function PizzaBlock({ title, price, imageUrl }) {
+import { useState } from 'react';
+
+function PizzaBlock({ title, price, imageUrl, sizes, types }) {
+  const typePizzas = ['thin', 'traditional'];
+
+  const [pizzaCount, setPizzaCount] = useState(0);
+  const [activeType, setActiveType] = useState(types[0] ?? 0);
+  const [activeSize, setActiveSize] = useState(0);
+
+  const handleIncrementPizza = () => {
+    setPizzaCount((prev) => prev + 1);
+  };
+
+  const handleClear = (e) => {
+    e.stopPropagation();
+    setPizzaCount(0);
+  };
+
   return (
-    <div class="pizza-block">
-      <img class="pizza-block__image" src={imageUrl} alt={title} />
-      <h4 class="pizza-block__title">{title}</h4>
-      <div class="pizza-block__selector">
+    <div className="pizza-block">
+      <img className="pizza-block__image" src={imageUrl} alt={title} />
+      <h4 className="pizza-block__title">{title}</h4>
+      <div className="pizza-block__selector">
         <ul>
-          <li class="active">тонкое</li>
-          <li>традиционное</li>
+          {types.map((typeId) => (
+            <li
+              key={typeId}
+              className={typeId === activeType ? 'active' : ''}
+              onClick={() => setActiveType(typeId)}>
+              {typePizzas[typeId]}
+            </li>
+          ))}
         </ul>
         <ul>
-          <li class="active">26 см.</li>
-          <li>30 см.</li>
-          <li>40 см.</li>
+          {sizes.map((size, i) => (
+            <li
+              key={size}
+              className={i === activeSize ? 'active' : ''}
+              onClick={() => setActiveSize(i)}>
+              {size}см.
+            </li>
+          ))}
         </ul>
       </div>
-      <div class="pizza-block__bottom">
-        <div class="pizza-block__price">от {price} ₽</div>
-        <div class="button button--outline button--add">
+      <div className="pizza-block__bottom">
+        <div className="pizza-block__price">от {price} ₽</div>
+        <button
+          className="button button--outline button--add"
+          type="button"
+          onClick={handleIncrementPizza}>
           <svg
             width="12"
             height="12"
@@ -29,8 +60,26 @@ function PizzaBlock({ title, price, imageUrl }) {
             />
           </svg>
           <span>Добавить</span>
-          <i>2</i>
-        </div>
+          {pizzaCount > 0 && <i>{pizzaCount}</i>}
+
+          {pizzaCount > 0 && (
+            <span className="button__clear" role="button" onClick={handleClear} tabIndex={0}>
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 12 12"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden>
+                <path
+                  d="M3 3l6 6M9 3L3 9"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </span>
+          )}
+        </button>
       </div>
     </div>
   );

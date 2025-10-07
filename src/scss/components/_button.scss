@@ -96,6 +96,9 @@
   }
 
   &--add {
+    position: relative;
+    min-height: 45px;
+    padding: 10px 30px;
     svg {
       margin-right: 2px;
     }
@@ -145,4 +148,26 @@
       font-size: 16px;
     }
   }
+}
+
+.button__clear {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 15px;
+  height: 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  opacity: 0.85;
+  cursor: pointer;
+
+  svg {
+    margin-right: 0;
+  }
+}
+
+.button__clear:hover {
+  opacity: 1;
 }

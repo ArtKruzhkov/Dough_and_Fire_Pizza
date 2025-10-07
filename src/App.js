@@ -9,21 +9,28 @@ import './scss/app.scss';
 function App() {
   return (
     <div className="App">
-      <div class="wrapper">
+      <div className="wrapper">
         <Header />
 
-        <div class="content">
-          <div class="container">
-            <div class="content__top">
+        <div className="content">
+          <div className="container">
+            <div className="content__top">
               <Categories />
               <Sort />
             </div>
 
-            <h2 class="content__title">Все пиццы</h2>
+            <h2 className="content__title">Все пиццы</h2>
 
-            <div class="content__items">
+            <div className="content__items">
               {pizzas.map((p) => (
-                <PizzaBlock key={p.id} title={p.name} price={p.price} imageUrl={p.imageUrl} />
+                <PizzaBlock
+                  key={p.id}
+                  title={p.name}
+                  price={p.price}
+                  imageUrl={p.imageUrl}
+                  sizes={p.sizes}
+                  types={p.types}
+                />
               ))}
             </div>
           </div>
