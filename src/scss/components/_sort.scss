@@ -5,6 +5,7 @@
   &__label {
     display: flex;
     align-items: center;
+    cursor: pointer;
 
     svg {
       margin-right: 8px;
@@ -19,6 +20,17 @@
       border-bottom: 1px dashed $orange;
       cursor: pointer;
     }
+  }
+
+  &__arrow {
+    transform-origin: 50% 50%;
+    transition: transform 0.2s ease;
+  }
+  &__arrow--down {
+    transform: rotate(180deg);
+  }
+  &__arrow--up {
+    transform: rotate(0deg);
   }
 
   &__popup {

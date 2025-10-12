@@ -37,7 +37,7 @@ function PizzaBlock({ title, price, imageUrl, sizes, types }) {
               key={size}
               className={i === activeSize ? 'active' : ''}
               onClick={() => setActiveSize(i)}>
-              {size}см.
+              {size}cm.
             </li>
           ))}
         </ul>
@@ -59,7 +59,7 @@ function PizzaBlock({ title, price, imageUrl, sizes, types }) {
               fill="white"
             />
           </svg>
-          <span>Добавить</span>
+          <span>Add pizza</span>
           {pizzaCount > 0 && <i>{pizzaCount}</i>}
 
           {pizzaCount > 0 && (
