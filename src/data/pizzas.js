@@ -6,7 +6,7 @@ export const pizzas = [
     imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf48e02377e9adc0b190c9676321.avif',
     types: [0, 1],
     sizes: [26, 30, 40],
-    category: 2, // Vegetarian
+    category: 2,
     rating: 9,
   },
   {
@@ -16,7 +16,7 @@ export const pizzas = [
     imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf40eb1171aabe90b1b3ce07c0c5.avif',
     types: [0, 1],
     sizes: [26, 40],
-    category: 2, // Vegetarian
+    category: 2,
     rating: 6,
   },
   {
@@ -26,7 +26,7 @@ export const pizzas = [
     imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf4f806371f19d529f9e9e7dba36.avif',
     types: [0],
     sizes: [26, 30, 40],
-    category: 4, // Spicy (чоризо)
+    category: 4,
     rating: 7,
   },
   {
@@ -36,7 +36,7 @@ export const pizzas = [
     imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf283b2372ea8e7cfc8adae9ea84.avif',
     types: [0, 1],
     sizes: [26, 30, 40],
-    category: 1, // Meat
+    category: 1,
     rating: 6,
   },
   {
@@ -46,7 +46,7 @@ export const pizzas = [
     imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf3e424371b49f0b8d7dbe320a70.avif',
     types: [0, 1],
     sizes: [26, 30, 40],
-    category: 1, // Meat
+    category: 1,
     rating: 7,
   },
   {
@@ -56,7 +56,7 @@ export const pizzas = [
     imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf4d218b75d4a3e667fc2f6d7643.avif',
     types: [0, 1],
     sizes: [26, 30, 40],
-    category: 1, // ближе к Meat (морепродукты в мясной категории)
+    category: 1,
     rating: 8,
   },
   {
@@ -66,7 +66,7 @@ export const pizzas = [
     imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf4624de7324966f2fc62c3ca673.avif',
     types: [0, 1],
     sizes: [26, 30, 40],
-    category: 3, // Grilled
+    category: 3,
     rating: 7,
   },
   {
@@ -76,7 +76,7 @@ export const pizzas = [
     imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198c659b357718f9c77ad0dc392dadf.avif',
     types: [0, 1],
     sizes: [26, 30, 40],
-    category: 1, // Meat
+    category: 1,
     rating: 6,
   },
   {
@@ -86,7 +86,7 @@ export const pizzas = [
     imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf2e5d2973a4bf5ec61161496f91.avif',
     types: [0, 1],
     sizes: [26, 30, 40],
-    category: 4, // Spicy (есть чоризо/острые соусы)
+    category: 4,
     rating: 8,
   },
   {
@@ -96,7 +96,7 @@ export const pizzas = [
     imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf5147f27780a3290a82692e7a36.avif',
     types: [0, 1],
     sizes: [26, 30, 40],
-    category: 4, // Spicy (соус сладкий чили)
+    category: 4,
     rating: 7,
   },
   {
@@ -106,7 +106,7 @@ export const pizzas = [
     imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf5205fb78abb9ad479b6e47304c.avif',
     types: [0, 1],
     sizes: [26, 30, 40],
-    category: 1, // Meat (говядина)
+    category: 1,
     rating: 7,
   },
   {
@@ -116,7 +116,7 @@ export const pizzas = [
     imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf2b03447079941f2d5ac6e986a9.avif',
     types: [0, 1],
     sizes: [26, 30, 40],
-    category: 1, // Meat (бекон)
+    category: 1,
     rating: 8,
   },
   {
@@ -126,7 +126,7 @@ export const pizzas = [
     imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf4e67f474f991f04a46a49af5e6.avif',
     types: [0, 1],
     sizes: [26, 30, 40],
-    category: 1, // Meat (цыпленок)
+    category: 1,
     rating: 6,
   },
   {
@@ -136,7 +136,7 @@ export const pizzas = [
     imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf443ff778d0a9a9b3e628d39b95.avif',
     types: [0, 1],
     sizes: [26, 30, 40],
-    category: 1, // Meat (двойной цыпленок)
+    category: 1,
     rating: 7,
   },
   {
@@ -146,7 +146,7 @@ export const pizzas = [
     imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf3b88d5772695c7f9e557b5b196.avif',
     types: [0, 1],
     sizes: [26, 30, 40],
-    category: 1, // Meat
+    category: 1,
     rating: 9,
   },
   {
@@ -156,7 +156,7 @@ export const pizzas = [
     imageUrl: 'https://media.dodostatic.net/image/r:292x292/0198bf3fab7976678d811111bb2e8cb9.avif',
     types: [0, 1],
     sizes: [26, 30, 40],
-    category: 1, // Meat
+    category: 1,
     rating: 7,
   },
 ];
