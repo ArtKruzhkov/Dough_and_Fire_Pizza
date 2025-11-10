@@ -1,0 +1,36 @@
+.not-found {
+  min-height: calc(100vh - 318px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  &__inner {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  &__emoji {
+    font-size: 72px;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  &__title {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+
+  &__text {
+    font-size: 18px;
+    color: #777;
+    margin-bottom: 28px;
+  }
+
+  &__button {
+    padding: 12px 24px;
+    font-weight: 600;
+  }
+}
