@@ -12,6 +12,7 @@
 
   &__logo {
     display: flex;
+    align-items: center;
 
     img {
       margin-right: 15px;
@@ -23,10 +24,22 @@
       letter-spacing: 1%;
       text-transform: uppercase;
       font-weight: 800;
+
+      @media (max-width: 550px) {
+        font-size: 18px;
+      }
+
+      @media (max-width: 490px) {
+        display: none;
+      }
     }
 
     p {
       color: #7b7b7b;
+
+      @media (max-width: 600px) {
+        display: none;
+      }
     }
   }
 }
