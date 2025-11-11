@@ -1,12 +1,10 @@
 import { useState } from 'react';
 
-function Sort() {
+function Sort({ items, value, onChange }) {
   const [isVisible, setIsVisible] = useState(false);
-  const sortList = ['popularity', 'price', 'alphabetically'];
-  const [activeSort, setActiveSort] = useState(0);
 
   const handleSelect = (i) => {
-    setActiveSort(i);
+    onChange(i);
     setIsVisible(false);
   };
 
@@ -27,17 +25,17 @@ function Sort() {
         </svg>
 
         <b>Sort by:</b>
-        <span>{sortList[activeSort]}</span>
+        <span>{items[value]}</span>
       </div>
       {isVisible && (
         <div className="sort__popup">
           <ul>
-            {sortList.map((value, i) => (
+            {items.map((item, i) => (
               <li
-                key={value}
-                className={activeSort === i ? 'active' : ''}
+                key={item}
+                className={value === i ? 'active' : ''}
                 onClick={() => handleSelect(i)}>
-                {value}
+                {item}
               </li>
             ))}
           </ul>
