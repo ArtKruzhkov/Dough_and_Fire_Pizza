@@ -1,0 +1,47 @@
+.input__container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  left: -100px;
+}
+
+.input-search {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 12px 40px;
+  width: 280px;
+  border-radius: 12px;
+  font-size: 16px;
+
+  &:focus {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+  }
+}
+
+.search-logo-label {
+  position: absolute;
+  left: 10px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.search-logo {
+  opacity: 0.3;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.clear-input-logo {
+  cursor: pointer;
+  opacity: 0.3;
+  position: absolute;
+  right: 10px;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
