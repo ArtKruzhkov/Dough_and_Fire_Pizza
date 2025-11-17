@@ -2,12 +2,16 @@ import { Link } from 'react-router-dom';
 
 import pizzaLogo from '../assets/img/pizza-logo.svg';
 import Search from './Search';
+import { useContext } from 'react';
+import { SearchContext } from '../App';
 
-function Header({ search, setSearch }) {
+function Header() {
+  const { setSearchValue } = useContext(SearchContext);
+
   return (
     <header className="header">
       <div className="container">
-        <Link to="/" className="header__logo" onClick={() => setSearch('')}>
+        <Link to="/" className="header__logo" onClick={() => setSearchValue('')}>
           <img width="38" src={pizzaLogo} alt="logo" />
           <div>
             <h1>Dough & Fire</h1>
@@ -15,7 +19,7 @@ function Header({ search, setSearch }) {
           </div>
         </Link>
 
-        <Search value={search} onChange={setSearch} />
+        <Search />
 
         <div className="header__cart">
           <Link to="/cart" className="button button--cart">

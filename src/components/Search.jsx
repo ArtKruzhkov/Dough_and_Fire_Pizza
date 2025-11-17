@@ -1,7 +1,11 @@
 import { ReactComponent as SearchIcon } from '../assets/img/search_icon.svg';
 import { ReactComponent as CloseIcon } from '../assets/img/input_close_icon.svg';
+import { useContext } from 'react';
+import { SearchContext } from '../App';
 
-function Search({ value, onChange }) {
+function Search() {
+  const { searchValue, setSearchValue } = useContext(SearchContext);
+
   return (
     <div className="input__container">
       <label htmlFor="search-input" className="search-logo-label">
@@ -9,15 +13,15 @@ function Search({ value, onChange }) {
       </label>
 
       <input
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
+        value={searchValue}
+        onChange={(e) => setSearchValue(e.target.value)}
         id="search-input"
         className="input-search"
         type="text"
         placeholder="Search pizza..."
       />
 
-      {value && <CloseIcon className="clear-input-logo" onClick={() => onChange('')} />}
+      {searchValue && <CloseIcon className="clear-input-logo" onClick={() => setSearchValue('')} />}
     </div>
   );
 }
