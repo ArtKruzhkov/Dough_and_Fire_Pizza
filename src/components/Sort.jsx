@@ -1,15 +1,40 @@
-import { useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 function Sort({ items, value, onChange }) {
   const [isVisible, setIsVisible] = useState(false);
+  const sortRef = useRef();
 
   const handleSelect = (i) => {
     onChange(i);
     setIsVisible(false);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (!sortRef.current) {
+        return;
+      }
+      if (!sortRef.current.contains(e.target)) {
+        setIsVisible(false);
+      }
+    };
+
+    const handleEsc = (e) => {
+      if (e.key === 'Escape') {
+        setIsVisible(false);
+      }
+    };
+
+    document.body.addEventListener('pointerdown', handleClickOutside);
+    document.body.addEventListener('keydown', handleEsc);
+    return () => {
+      document.removeEventListener('pointerdown', handleClickOutside);
+      document.removeEventListener('keydown', handleEsc);
+    };
+  }, []);
+
   return (
-    <div className="sort">
+    <div className="sort" ref={sortRef}>
       <div className="sort__label" onClick={() => setIsVisible(!isVisible)}>
         <svg
           className={`sort__arrow ${isVisible ? 'sort__arrow--up' : 'sort__arrow--down'}`}

@@ -136,6 +136,7 @@ function Home() {
           : paginatedPizzas.map((p) => (
               <PizzaBlock
                 key={p.id}
+                id={p.id}
                 title={p.name}
                 price={p.price}
                 imageUrl={p.imageUrl}

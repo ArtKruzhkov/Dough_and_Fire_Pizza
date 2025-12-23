@@ -1,19 +1,35 @@
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addToCart, removeItem } from '../slices/cartSlice';
 
-function PizzaBlock({ title, price, imageUrl, sizes, types }) {
+function PizzaBlock({ id, title, price, imageUrl, sizes, types }) {
   const typePizzas = ['thin', 'traditional'];
 
-  const [pizzaCount, setPizzaCount] = useState(0);
   const [activeType, setActiveType] = useState(types[0] ?? 0);
   const [activeSize, setActiveSize] = useState(0);
+  const size = sizes[activeSize];
+
+  const key = `${id}_${size}_${activeType}`;
+  const inCartCount = useSelector((state) => state.cart.items[key]?.count ?? 0);
+
+  const dispatch = useDispatch();
 
   const handleIncrementPizza = () => {
-    setPizzaCount((prev) => prev + 1);
+    const item = {
+      id,
+      name: title,
+      price,
+      imageUrl,
+      type: activeType,
+      typeLabel: typePizzas[activeType],
+      size,
+    };
+    dispatch(addToCart(item));
   };
 
   const handleClear = (e) => {
     e.stopPropagation();
-    setPizzaCount(0);
+    dispatch(removeItem({ id, size, type: activeType }));
   };
 
   return (
@@ -60,9 +76,9 @@ function PizzaBlock({ title, price, imageUrl, sizes, types }) {
             />
           </svg>
           <span>Add pizza</span>
-          {pizzaCount > 0 && <i>{pizzaCount}</i>}
+          {inCartCount > 0 && <i>{inCartCount}</i>}
 
-          {pizzaCount > 0 && (
+          {inCartCount > 0 && (
             <span className="button__clear" role="button" onClick={handleClear} tabIndex={0}>
               <svg
                 width="15"
