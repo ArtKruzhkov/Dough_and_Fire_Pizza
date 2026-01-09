@@ -1,8 +1,9 @@
-import { useState, useEffect, useMemo, useContext } from 'react';
+import { useEffect, useMemo, useContext } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import axios from 'axios';
+// import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { setActiveCategory, setActiveSort, setCurrentPage } from '../slices/filterSlice';
+import { fetchPizzas } from '../slices/pizzasSlice';
 
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
@@ -11,14 +12,18 @@ import PizzaSkeleton from '../components/PizzaSkeleton';
 import Pagination from '../components/Paginations';
 import { SearchContext } from '../App';
 
-const APIpizzas = 'https://68ef6f02b06cc802829d6094.mockapi.io/items';
+// const APIpizzas = 'https://68ef6f02b06cc802829d6094.mockapi.io/items';
 const PAGE_SIZE = 8;
 
 function Home() {
   const { searchValue, setSearchValue } = useContext(SearchContext);
-  const [allPizzas, setAllPizzas] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  // const [allPizzas, setAllPizzas] = useState([]);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState(null);
+
+  const allPizzas = useSelector((s) => s.pizzas.items);
+  const loading = useSelector((s) => s.pizzas.loading);
+  const error = useSelector((s) => s.pizzas.error);
 
   const dispatch = useDispatch();
   const categories = useSelector((s) => s.filter.categories);
@@ -53,20 +58,53 @@ function Home() {
     setSearchParams(params, { replace: true });
   }, [activeCategory, activeSort, currentPage, searchValue, setSearchParams]);
 
-  // Загрузка всех пицц 1 раз
-  useEffect(() => {
-    setLoading(true);
-    setError(null);
+  // Загрузка всех пицц
 
-    axios
-      .get(APIpizzas)
-      .then((res) => setAllPizzas(res.data))
-      .catch((e) => {
-        setError(e);
-        console.error(e.message);
-      })
-      .finally(() => setLoading(false));
-  }, []);
+  useEffect(() => {
+    dispatch(fetchPizzas());
+  }, [dispatch]);
+
+  // useEffect(() => {
+  //   setLoading(true);
+  //   setError(null);
+
+  //   axios
+  //     .get(APIpizzas)
+  //     .then((res) => setAllPizzas(res.data))
+  //     .catch((e) => {
+  //       setError(e);
+  //       console.error(e.message);
+  //     })
+  //     .finally(() => setLoading(false));
+  // }, []);
+
+  // useEffect(() => {
+  //   let isCancelled = false;
+  //   setLoading(true);
+  //   setError(null);
+
+  //   (async () => {
+  //     try {
+  //       const res = await axios.get(APIpizzas);
+  //       if (!isCancelled) {
+  //         setAllPizzas(res.data);
+  //       }
+  //     } catch (e) {
+  //       if (!isCancelled) {
+  //         setError(e);
+  //         console.error(e.message);
+  //       }
+  //     } finally {
+  //       if (!isCancelled) {
+  //         setLoading(false);
+  //       }
+  //     }
+  //   })();
+
+  //   return () => {
+  //     isCancelled = true;
+  //   };
+  // }, []);
 
   // Обработчики
   const handleChangeCategory = (i) => {
@@ -128,7 +166,9 @@ function Home() {
       <h2 className="content__title">All pizzas</h2>
 
       {error && <p style={{ color: 'red' }}>Error: {error.message}</p>}
-      {!loading && processedPizzas.length === 0 && <p>Пицца с данным названием не найдена</p>}
+      {!loading && !error && processedPizzas.length === 0 && (
+        <p>Пицца с данным названием не найдена</p>
+      )}
 
       <div className="content__items">
         {loading
