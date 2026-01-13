@@ -6,6 +6,7 @@ const initialState = {
   sortList: ['popularity', 'price', 'alphabetically'],
   activeSort: 0,
   currentPage: 1,
+  searchValue: '',
 };
 
 export const filterSlice = createSlice({
@@ -21,9 +22,15 @@ export const filterSlice = createSlice({
     setCurrentPage(state, action) {
       state.currentPage = action.payload;
     },
+    setSearchValue(state, action) {
+      state.searchValue = action.payload;
+    },
   },
 });
 
-export const { setActiveCategory, setActiveSort, setCurrentPage } = filterSlice.actions;
+export const selectFilter = (state) => state.filter;
+
+export const { setActiveCategory, setActiveSort, setCurrentPage, setSearchValue } =
+  filterSlice.actions;
 
 export default filterSlice.reducer;

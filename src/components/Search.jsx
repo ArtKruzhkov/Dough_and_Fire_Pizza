@@ -1,27 +1,29 @@
-import { useRef, useContext, useEffect, useState } from 'react';
-import { SearchContext } from '../App';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSearchValue } from '../slices/filterSlice';
+import { useRef, useEffect, useState } from 'react';
 import { ReactComponent as SearchIcon } from '../assets/img/search_icon.svg';
 import { ReactComponent as CloseIcon } from '../assets/img/input_close_icon.svg';
 
 function Search() {
-  const { searchValue, setSearchValue } = useContext(SearchContext);
+  const searchValue = useSelector((s) => s.filter.searchValue);
+  const dispatch = useDispatch();
   const [local, setLocal] = useState(searchValue);
   const inputEl = useRef(null);
+
+  const onClickClear = () => {
+    setLocal('');
+    dispatch(setSearchValue(''));
+    inputEl.current.focus();
+  };
 
   useEffect(() => {
     setLocal(searchValue);
   }, [searchValue]);
 
   useEffect(() => {
-    const id = setTimeout(() => setSearchValue(local), 600);
+    const id = setTimeout(() => dispatch(setSearchValue(local)), 600);
     return () => clearTimeout(id);
-  }, [local, setSearchValue]);
-
-  const onClickClear = () => {
-    setLocal('');
-    setSearchValue('');
-    inputEl.current.focus();
-  };
+  }, [local, dispatch]);
 
   return (
     <div className="input__container">

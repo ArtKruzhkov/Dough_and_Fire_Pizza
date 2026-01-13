@@ -1,21 +1,22 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectTotalCount, selectTotalPrice } from '../slices/cartSlice';
+import { useDispatch } from 'react-redux';
+import { setSearchValue } from '../slices/filterSlice';
 
 import pizzaLogo from '../assets/img/pizza-logo.svg';
 import Search from './Search';
-import { useContext } from 'react';
-import { SearchContext } from '../App';
 
 function Header() {
-  const { setSearchValue } = useContext(SearchContext);
   const totalCount = useSelector(selectTotalCount);
   const totalPrice = useSelector(selectTotalPrice);
+
+  const dispatch = useDispatch();
 
   return (
     <header className="header">
       <div className="container">
-        <Link to="/" className="header__logo" onClick={() => setSearchValue('')}>
+        <Link to="/" className="header__logo" onClick={() => dispatch(setSearchValue(''))}>
           <img width="38" src={pizzaLogo} alt="logo" />
           <div>
             <h1>Dough & Fire</h1>

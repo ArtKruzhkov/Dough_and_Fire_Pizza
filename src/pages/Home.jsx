@@ -1,8 +1,13 @@
-import { useEffect, useMemo, useContext } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
-// import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { setActiveCategory, setActiveSort, setCurrentPage } from '../slices/filterSlice';
+import {
+  selectFilter,
+  setActiveCategory,
+  setActiveSort,
+  setCurrentPage,
+  setSearchValue,
+} from '../slices/filterSlice';
 import { fetchPizzas } from '../slices/pizzasSlice';
 
 import Categories from '../components/Categories';
@@ -10,27 +15,18 @@ import Sort from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
 import PizzaSkeleton from '../components/PizzaSkeleton';
 import Pagination from '../components/Paginations';
-import { SearchContext } from '../App';
 
-// const APIpizzas = 'https://68ef6f02b06cc802829d6094.mockapi.io/items';
 const PAGE_SIZE = 8;
 
 function Home() {
-  const { searchValue, setSearchValue } = useContext(SearchContext);
-  // const [allPizzas, setAllPizzas] = useState([]);
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
-
   const allPizzas = useSelector((s) => s.pizzas.items);
   const loading = useSelector((s) => s.pizzas.loading);
   const error = useSelector((s) => s.pizzas.error);
 
   const dispatch = useDispatch();
-  const categories = useSelector((s) => s.filter.categories);
-  const activeCategory = useSelector((s) => s.filter.activeCategory);
-  const sortList = useSelector((s) => s.filter.sortList);
-  const activeSort = useSelector((s) => s.filter.activeSort);
-  const currentPage = useSelector((s) => s.filter.currentPage);
+
+  const { categories, activeCategory, sortList, activeSort, currentPage, searchValue } =
+    useSelector(selectFilter);
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -44,8 +40,8 @@ function Home() {
     dispatch(setActiveCategory(Number.isFinite(cat) ? cat : 0));
     dispatch(setActiveSort(Number.isFinite(sort) ? sort : 0));
     dispatch(setCurrentPage(Number.isFinite(page) && page > 0 ? page : 1));
-    setSearchValue(q);
-  }, [dispatch, searchParams, setSearchValue]);
+    dispatch(setSearchValue(q));
+  }, [dispatch, searchParams]);
 
   // 2) Ставим в URL при изменении фильтров/поиска/страницы
   useEffect(() => {
