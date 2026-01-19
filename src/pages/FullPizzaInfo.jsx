@@ -1,0 +1,79 @@
+import { useEffect, useMemo } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchPizzas } from '../slices/pizzasSlice';
+
+function FullPizzaInfo() {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const { items, loading, error } = useSelector((s) => s.pizzas);
+
+  const pizza = useMemo(() => items.find((p) => String(p.id) === String(id)), [items, id]);
+
+  useEffect(() => {
+    if (!items || items.length === 0) {
+      dispatch(fetchPizzas());
+    }
+  }, [dispatch, items]);
+
+  if (loading && !pizza) return <h2>Загрузка…</h2>;
+  if (error) return <p style={{ color: 'red' }}>Ошибка: {String(error.message)}</p>;
+  if (!pizza) {
+    return (
+      <div className="full-pizza full-pizza--empty">
+        <h2>Пицца не найдена</h2>
+        <Link className="button button--black" to="/">
+          <span>На главную</span>
+        </Link>
+      </div>
+    );
+  }
+
+  return (
+    <div className="full-pizza">
+      <div className="full-pizza__image-wrap">
+        <img className="full-pizza__image" src={pizza.imageUrl} alt={pizza.name} />
+      </div>
+
+      <div className="full-pizza__content">
+        <h1 className="full-pizza__title">{pizza.name}</h1>
+
+        <div className="full-pizza__meta">
+          {Array.isArray(pizza.sizes) && (
+            <div className="full-pizza__row">
+              <span className="full-pizza__label">Размеры:</span>
+              <ul className="full-pizza__chips">
+                {pizza.sizes.map((s) => (
+                  <li key={s}>{s} см</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {Array.isArray(pizza.types) && (
+            <div className="full-pizza__row">
+              <span className="full-pizza__label">Тесто:</span>
+              <ul className="full-pizza__chips">
+                {pizza.types.map((t) => (
+                  <li key={t}>{t === 0 ? 'thin' : 'traditional'}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+
+        <div className="full-pizza__footer">
+          <div className="full-pizza__price">от {pizza.price} ₽</div>
+          <div className="full-pizza__actions">
+            <Link className="button button--outline" to="/">
+              <span>Назад</span>
+            </Link>
+            {/* сюда позже можно добавить кнопку “В корзину” */}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default FullPizzaInfo;

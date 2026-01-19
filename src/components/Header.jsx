@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectTotalCount, selectTotalPrice } from '../slices/cartSlice';
 import { useDispatch } from 'react-redux';
@@ -10,6 +10,8 @@ import Search from './Search';
 function Header() {
   const totalCount = useSelector(selectTotalCount);
   const totalPrice = useSelector(selectTotalPrice);
+
+  const location = useLocation();
 
   const dispatch = useDispatch();
 
@@ -24,7 +26,7 @@ function Header() {
           </div>
         </Link>
 
-        <Search />
+        {location.pathname !== '/cart' && <Search />}
 
         <div className="header__cart">
           <Link to="/cart" className="button button--cart">
