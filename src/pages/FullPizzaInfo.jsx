@@ -16,14 +16,14 @@ function FullPizzaInfo() {
     }
   }, [dispatch, items]);
 
-  if (loading && !pizza) return <h2>Загрузка…</h2>;
-  if (error) return <p style={{ color: 'red' }}>Ошибка: {String(error.message)}</p>;
+  if (loading && !pizza) return <h2>Loading…</h2>;
+  if (error) return <p style={{ color: 'red' }}>Error: {String(error.message)}</p>;
   if (!pizza) {
     return (
       <div className="full-pizza full-pizza--empty">
-        <h2>Пицца не найдена</h2>
+        <h2>Pizza not found</h2>
         <Link className="button button--black" to="/">
-          <span>На главную</span>
+          <span>back to home page</span>
         </Link>
       </div>
     );
@@ -41,10 +41,10 @@ function FullPizzaInfo() {
         <div className="full-pizza__meta">
           {Array.isArray(pizza.sizes) && (
             <div className="full-pizza__row">
-              <span className="full-pizza__label">Размеры:</span>
+              <span className="full-pizza__label">Sizes:</span>
               <ul className="full-pizza__chips">
                 {pizza.sizes.map((s) => (
-                  <li key={s}>{s} см</li>
+                  <li key={s}>{s} cm</li>
                 ))}
               </ul>
             </div>
@@ -52,7 +52,7 @@ function FullPizzaInfo() {
 
           {Array.isArray(pizza.types) && (
             <div className="full-pizza__row">
-              <span className="full-pizza__label">Тесто:</span>
+              <span className="full-pizza__label">Dough:</span>
               <ul className="full-pizza__chips">
                 {pizza.types.map((t) => (
                   <li key={t}>{t === 0 ? 'thin' : 'traditional'}</li>
@@ -63,12 +63,11 @@ function FullPizzaInfo() {
         </div>
 
         <div className="full-pizza__footer">
-          <div className="full-pizza__price">от {pizza.price} ₽</div>
+          <div className="full-pizza__price">from {pizza.price} ₽</div>
           <div className="full-pizza__actions">
             <Link className="button button--outline" to="/">
-              <span>Назад</span>
+              <span>back to main page</span>
             </Link>
-            {/* сюда позже можно добавить кнопку “В корзину” */}
           </div>
         </div>
       </div>

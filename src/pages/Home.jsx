@@ -30,30 +30,6 @@ function Home() {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // 1) Инициализация из URL при монтировании
-  useEffect(() => {
-    const cat = Number(searchParams.get('category') ?? 0);
-    const sort = Number(searchParams.get('sortBy') ?? 0);
-    const page = Number(searchParams.get('page') ?? 1);
-    const q = searchParams.get('query') ?? '';
-
-    dispatch(setActiveCategory(Number.isFinite(cat) ? cat : 0));
-    dispatch(setActiveSort(Number.isFinite(sort) ? sort : 0));
-    dispatch(setCurrentPage(Number.isFinite(page) && page > 0 ? page : 1));
-    dispatch(setSearchValue(q));
-  }, [dispatch, searchParams]);
-
-  // 2) Ставим в URL при изменении фильтров/поиска/страницы
-  useEffect(() => {
-    const params = {};
-    if (activeCategory > 0) params.category = String(activeCategory);
-    if (activeSort > 0) params.sortBy = String(activeSort); // 0 — дефолт "popularity"
-    if (currentPage > 1) params.page = String(currentPage);
-    if (searchValue.trim()) params.query = searchValue.trim();
-
-    setSearchParams(params, { replace: true });
-  }, [activeCategory, activeSort, currentPage, searchValue, setSearchParams]);
-
   // Загрузка всех пицц
 
   useEffect(() => {
@@ -101,6 +77,30 @@ function Home() {
   //     isCancelled = true;
   //   };
   // }, []);
+
+  // 1) Инициализация из URL при монтировании
+  useEffect(() => {
+    const cat = Number(searchParams.get('category') ?? 0);
+    const sort = Number(searchParams.get('sortBy') ?? 0);
+    const page = Number(searchParams.get('page') ?? 1);
+    const q = searchParams.get('query') ?? '';
+
+    dispatch(setActiveCategory(Number.isFinite(cat) ? cat : 0));
+    dispatch(setActiveSort(Number.isFinite(sort) ? sort : 0));
+    dispatch(setCurrentPage(Number.isFinite(page) && page > 0 ? page : 1));
+    dispatch(setSearchValue(q));
+  }, [dispatch, searchParams]);
+
+  // 2) Ставим в URL при изменении фильтров/поиска/страницы
+  useEffect(() => {
+    const params = {};
+    if (activeCategory > 0) params.category = String(activeCategory);
+    if (activeSort > 0) params.sortBy = String(activeSort); // 0 — дефолт "popularity"
+    if (currentPage > 1) params.page = String(currentPage);
+    if (searchValue.trim()) params.query = searchValue.trim();
+
+    setSearchParams(params, { replace: true });
+  }, [activeCategory, activeSort, currentPage, searchValue, setSearchParams]);
 
   // Обработчики
   const handleChangeCategory = (i) => {
@@ -162,9 +162,7 @@ function Home() {
       <h2 className="content__title">All pizzas</h2>
 
       {error && <p style={{ color: 'red' }}>Error: {error.message}</p>}
-      {!loading && !error && processedPizzas.length === 0 && (
-        <p>Пицца с данным названием не найдена</p>
-      )}
+      {!loading && !error && processedPizzas.length === 0 && <p>No pizza found with that name.</p>}
 
       <div className="content__items">
         {loading
