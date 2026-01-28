@@ -6,7 +6,14 @@ import { Provider } from 'react-redux';
 import App from './App';
 import { store } from './store/store';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const rootElement = document.getElementById('root');
+
+if (!rootElement) {
+  throw new Error('Root container missing in index.html');
+}
+
+const root = ReactDOM.createRoot(rootElement);
+
 root.render(
   <React.StrictMode>
     <BrowserRouter>

@@ -3,15 +3,35 @@ import { useParams, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchPizzas } from '../slices/pizzasSlice';
 
+type pizzaType = {
+  id: number;
+  name: string;
+  price: number;
+  imageUrl: string;
+  types: number[];
+  sizes: number[];
+  category: number;
+  rating: number;
+};
+
 function FullPizzaInfo() {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string | undefined }>();
+
+  // @ts-ignore
   const dispatch = useDispatch();
-  const { items, loading, error } = useSelector((s) => s.pizzas);
+
+  // @ts-ignore
+  const { items, loading, error } = useSelector((s) => s.pizzas) as {
+    items: pizzaType[] | [];
+    loading: boolean;
+    error: Error | null;
+  };
 
   const pizza = useMemo(() => items.find((p) => String(p.id) === String(id)), [items, id]);
 
   useEffect(() => {
     if (!items || items.length === 0) {
+      // @ts-ignore
       dispatch(fetchPizzas());
     }
   }, [dispatch, items]);
