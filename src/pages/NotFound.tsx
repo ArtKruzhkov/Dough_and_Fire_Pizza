@@ -9,13 +9,13 @@ function NotFound() {
         </div>
         <h2 className="not-found__title">404 — Page not found</h2>
         <p className="not-found__text">
-          Упс! Такой страницы нет.
+          Oops! This page doesn’t exist.
           <br />
-          Возможно, ссылка устарела или была удалена.
+          It may have been moved or deleted.
         </p>
 
         <Link to="/" className="button button--black not-found__button">
-          На главную
+          Back to the homepage
         </Link>
       </div>
     </div>

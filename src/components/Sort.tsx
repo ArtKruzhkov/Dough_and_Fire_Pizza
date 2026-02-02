@@ -1,25 +1,31 @@
 import { useRef, useState, useEffect } from 'react';
 
-function Sort({ items, value, onChange }) {
-  const [isVisible, setIsVisible] = useState(false);
-  const sortRef = useRef();
+type SortProps = {
+  items: string[];
+  value: number;
+  onChange: (index: number) => void;
+};
 
-  const handleSelect = (i) => {
+function Sort({ items, value, onChange }: SortProps) {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const sortRef = useRef<HTMLDivElement>(null);
+
+  const handleSelect = (i: number) => {
     onChange(i);
     setIsVisible(false);
   };
 
   useEffect(() => {
-    const handleClickOutside = (e) => {
+    const handleClickOutside = (e: PointerEvent) => {
       if (!sortRef.current) {
         return;
       }
-      if (!sortRef.current.contains(e.target)) {
+      if (!sortRef.current.contains(e.target as Node)) {
         setIsVisible(false);
       }
     };
 
-    const handleEsc = (e) => {
+    const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setIsVisible(false);
       }

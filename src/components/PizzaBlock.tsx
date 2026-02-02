@@ -3,7 +3,16 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart, removeItem } from '../slices/cartSlice';
 
-function PizzaBlock({ id, title, price, imageUrl, sizes, types }) {
+type PizzaBlockProps = {
+  id: number;
+  title: string;
+  price: number;
+  imageUrl: string;
+  sizes: number[];
+  types: number[];
+};
+
+function PizzaBlock({ id, title, price, imageUrl, sizes, types }: PizzaBlockProps) {
   const typePizzas = ['thin', 'traditional'];
 
   const [activeType, setActiveType] = useState(types[0] ?? 0);
@@ -11,6 +20,8 @@ function PizzaBlock({ id, title, price, imageUrl, sizes, types }) {
   const size = sizes[activeSize];
 
   const key = `${id}_${size}_${activeType}`;
+
+  // @ts-ignore
   const inCartCount = useSelector((state) => state.cart.items[key]?.count ?? 0);
 
   const dispatch = useDispatch();
@@ -28,7 +39,7 @@ function PizzaBlock({ id, title, price, imageUrl, sizes, types }) {
     dispatch(addToCart(item));
   };
 
-  const handleClear = (e) => {
+  const handleClear = (e: React.MouseEvent) => {
     e.stopPropagation();
     dispatch(removeItem({ id, size, type: activeType }));
   };

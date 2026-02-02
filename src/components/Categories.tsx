@@ -1,4 +1,10 @@
-function Categories({ items, value, onChange }) {
+type CategoriesProps = {
+  items: string[];
+  value: number;
+  onChange: (index: number) => void;
+};
+
+function Categories({ items, value, onChange }: CategoriesProps) {
   return (
     <div className="categories">
       <ul className="categories__list">

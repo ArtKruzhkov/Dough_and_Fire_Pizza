@@ -6,8 +6,22 @@ import { clearCart } from '../slices/cartSlice';
 import CartItem from '../components/CartItem';
 import CartEmpty from './CartEmpty';
 
+type CartItemType = {
+  id: number;
+  name: string;
+  price: number;
+  imageUrl: string;
+  type: number;
+  typeLabel: string;
+  size: number;
+  count: number;
+};
+
+type ItemsObjectType = Record<string, CartItemType>;
+
 function Cart() {
-  const itemsObj = useSelector((state) => state.cart.items || {});
+  // @ts-ignore
+  const itemsObj = useSelector((state) => state.cart.items || {}) as ItemsObjectType;
   const totalCount = useSelector(selectTotalCount);
   const totalPrice = useSelector(selectTotalPrice);
 

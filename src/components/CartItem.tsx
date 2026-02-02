@@ -1,7 +1,18 @@
 import { useDispatch } from 'react-redux';
 import { decrementItem, incrementItem, removeItem } from '../slices/cartSlice';
 
-function CartItem({ id, title, size, type, typeLabel, imageUrl, price, count }) {
+type CartItemProps = {
+  id: number;
+  title: string;
+  size: number;
+  type: number;
+  typeLabel: string;
+  imageUrl: string;
+  price: number;
+  count: number;
+};
+
+function CartItem({ id, title, size, type, typeLabel, imageUrl, price, count }: CartItemProps) {
   const pizzasPrice = (price ?? 0) * (count ?? 0);
 
   const dispatch = useDispatch();

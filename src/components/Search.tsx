@@ -5,15 +5,17 @@ import { ReactComponent as SearchIcon } from '../assets/img/search_icon.svg';
 import { ReactComponent as CloseIcon } from '../assets/img/input_close_icon.svg';
 
 function Search() {
-  const searchValue = useSelector((s) => s.filter.searchValue);
+  // @ts-ignore
+  const searchValue = useSelector((s) => s.filter.searchValue) as string;
   const dispatch = useDispatch();
-  const [local, setLocal] = useState(searchValue);
-  const inputEl = useRef(null);
+
+  const [local, setLocal] = useState<string>(searchValue);
+  const inputEl = useRef<HTMLInputElement>(null);
 
   const onClickClear = () => {
     setLocal('');
     dispatch(setSearchValue(''));
-    inputEl.current.focus();
+    inputEl.current?.focus();
   };
 
   useEffect(() => {
