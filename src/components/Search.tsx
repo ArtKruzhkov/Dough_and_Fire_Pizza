@@ -18,6 +18,10 @@ function Search() {
     inputEl.current?.focus();
   };
 
+  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLocal(e.target.value);
+  };
+
   useEffect(() => {
     setLocal(searchValue);
   }, [searchValue]);
@@ -36,7 +40,7 @@ function Search() {
       <input
         ref={inputEl}
         value={local}
-        onChange={(e) => setLocal(e.target.value)}
+        onChange={onChangeInput}
         id="search-input"
         className="input-search"
         type="text"

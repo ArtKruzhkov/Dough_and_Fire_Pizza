@@ -18,10 +18,24 @@ import Pagination from '../components/Paginations';
 
 const PAGE_SIZE = 8;
 
+type pizzaType = {
+  id: number;
+  name: string;
+  price: number;
+  imageUrl: string;
+  types: number[];
+  sizes: number[];
+  category: number;
+  rating: number;
+};
+
 function Home() {
-  const allPizzas = useSelector((s) => s.pizzas.items);
-  const loading = useSelector((s) => s.pizzas.loading);
-  const error = useSelector((s) => s.pizzas.error);
+  // @ts-ignore
+  const allPizzas = useSelector((s) => s.pizzas.items as pizzaType[]);
+  // @ts-ignore
+  const loading = useSelector((s) => s.pizzas.loading as boolean);
+  // @ts-ignore
+  const error = useSelector((s) => s.pizzas.error as Error | null);
 
   const dispatch = useDispatch();
 
@@ -33,6 +47,7 @@ function Home() {
   // Загрузка всех пицц
 
   useEffect(() => {
+    // @ts-ignore
     dispatch(fetchPizzas());
   }, [dispatch]);
 
@@ -93,9 +108,9 @@ function Home() {
 
   // 2) Ставим в URL при изменении фильтров/поиска/страницы
   useEffect(() => {
-    const params = {};
+    const params: Record<string, string> = {};
     if (activeCategory > 0) params.category = String(activeCategory);
-    if (activeSort > 0) params.sortBy = String(activeSort); // 0 — дефолт "popularity"
+    if (activeSort > 0) params.sortBy = String(activeSort);
     if (currentPage > 1) params.page = String(currentPage);
     if (searchValue.trim()) params.query = searchValue.trim();
 
@@ -103,15 +118,15 @@ function Home() {
   }, [activeCategory, activeSort, currentPage, searchValue, setSearchParams]);
 
   // Обработчики
-  const handleChangeCategory = (i) => {
+  const handleChangeCategory = (i: number) => {
     dispatch(setActiveCategory(i));
     dispatch(setCurrentPage(1));
   };
-  const handleChangeSort = (i) => {
+  const handleChangeSort = (i: number) => {
     dispatch(setActiveSort(i));
     dispatch(setCurrentPage(1));
   };
-  const handleChangePage = (page) => {
+  const handleChangePage = (page: number) => {
     dispatch(setCurrentPage(page));
   };
 
@@ -124,8 +139,15 @@ function Home() {
 
     if (activeCategory > 0) items = items.filter((p) => Number(p.category) === activeCategory);
 
-    const sortMap = ['rating', 'price', 'name']; // 0..2
-    const sortBy = sortMap[activeSort] || 'rating';
+    // const sortMap = ['rating', 'price', 'name'];
+    // const sortBy = sortMap[activeSort] || 'rating';
+
+    // items.sort((a, b) =>
+    //   sortBy === 'name' ? a.name.localeCompare(b.name) : b[sortBy] - a[sortBy],
+    // );
+
+    const sortMap = ['rating', 'price', 'name'] as const;
+    const sortBy: (typeof sortMap)[number] = sortMap[activeSort] ?? 'rating';
 
     items.sort((a, b) =>
       sortBy === 'name' ? a.name.localeCompare(b.name) : b[sortBy] - a[sortBy],
