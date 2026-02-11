@@ -1,5 +1,5 @@
-import { useDispatch } from 'react-redux';
 import { decrementItem, incrementItem, removeItem } from '../slices/cartSlice';
+import { useAppDispatch } from '../hooks/hooks';
 
 type CartItemProps = {
   id: number;
@@ -15,7 +15,7 @@ type CartItemProps = {
 function CartItem({ id, title, size, type, typeLabel, imageUrl, price, count }: CartItemProps) {
   const pizzasPrice = (price ?? 0) * (count ?? 0);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleDecrement = () => {
     dispatch(decrementItem({ id, size, type }));

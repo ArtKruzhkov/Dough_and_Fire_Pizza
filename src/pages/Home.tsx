@@ -1,6 +1,5 @@
 import { useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
 import {
   selectFilter,
   setActiveCategory,
@@ -9,6 +8,7 @@ import {
   setSearchValue,
 } from '../slices/filterSlice';
 import { fetchPizzas } from '../slices/pizzasSlice';
+import { useAppSelector, useAppDispatch } from '../hooks/hooks';
 
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
@@ -18,36 +18,20 @@ import Pagination from '../components/Paginations';
 
 const PAGE_SIZE = 8;
 
-type pizzaType = {
-  id: number;
-  name: string;
-  price: number;
-  imageUrl: string;
-  types: number[];
-  sizes: number[];
-  category: number;
-  rating: number;
-};
-
 function Home() {
-  // @ts-ignore
-  const allPizzas = useSelector((s) => s.pizzas.items as pizzaType[]);
-  // @ts-ignore
-  const loading = useSelector((s) => s.pizzas.loading as boolean);
-  // @ts-ignore
-  const error = useSelector((s) => s.pizzas.error as Error | null);
+  const allPizzas = useAppSelector((s) => s.pizzas.items);
+  const loading = useAppSelector((s) => s.pizzas.loading);
+  const error = useAppSelector((s) => s.pizzas.error);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const { categories, activeCategory, sortList, activeSort, currentPage, searchValue } =
-    useSelector(selectFilter);
+    useAppSelector(selectFilter);
 
   const [searchParams, setSearchParams] = useSearchParams();
 
   // Загрузка всех пицц
-
   useEffect(() => {
-    // @ts-ignore
     dispatch(fetchPizzas());
   }, [dispatch]);
 

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
 import { addToCart, removeItem } from '../slices/cartSlice';
+import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 
 type PizzaBlockProps = {
   id: number;
@@ -10,6 +10,16 @@ type PizzaBlockProps = {
   imageUrl: string;
   sizes: number[];
   types: number[];
+};
+
+type CartItemAddToCartType = {
+  id: number;
+  name: string;
+  price: number;
+  imageUrl: string;
+  type: number;
+  typeLabel: string;
+  size: number;
 };
 
 function PizzaBlock({ id, title, price, imageUrl, sizes, types }: PizzaBlockProps) {
@@ -21,13 +31,12 @@ function PizzaBlock({ id, title, price, imageUrl, sizes, types }: PizzaBlockProp
 
   const key = `${id}_${size}_${activeType}`;
 
-  // @ts-ignore
-  const inCartCount = useSelector((state) => state.cart.items[key]?.count ?? 0);
+  const inCartCount = useAppSelector((state) => state.cart.items[key]?.count ?? 0);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleIncrementPizza = () => {
-    const item = {
+    const item: CartItemAddToCartType = {
       id,
       name: title,
       price,
@@ -39,14 +48,14 @@ function PizzaBlock({ id, title, price, imageUrl, sizes, types }: PizzaBlockProp
     dispatch(addToCart(item));
   };
 
-  const handleClear = (e: React.MouseEvent) => {
+  const handleClear = (e: React.MouseEvent<HTMLSpanElement>) => {
     e.stopPropagation();
     dispatch(removeItem({ id, size, type: activeType }));
   };
 
   return (
     <div className="pizza-block">
-      <Link to={`pizza/${id}`}>
+      <Link to={`pizza/${id}`} className="pizza-block__link">
         <img className="pizza-block__image" src={imageUrl} alt={title} />
         <h4 className="pizza-block__title">{title}</h4>
       </Link>

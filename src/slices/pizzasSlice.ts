@@ -3,14 +3,31 @@ import axios from 'axios';
 
 const APIpizzas = 'https://68ef6f02b06cc802829d6094.mockapi.io/items';
 
-export const fetchPizzas = createAsyncThunk(
+type PizzaType = {
+  id: number;
+  name: string;
+  price: number;
+  imageUrl: string;
+  types: number[];
+  sizes: number[];
+  category: number;
+  rating: number;
+};
+
+type PizzasState = {
+  items: PizzaType[];
+  loading: boolean;
+  error: Error | null;
+};
+
+export const fetchPizzas = createAsyncThunk<PizzaType[], void, { rejectValue: Error }>(
   'pizzas/fetchAllPizzas',
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get(APIpizzas);
+      const res = await axios.get<PizzaType[]>(APIpizzas);
       return res.data;
     } catch (error) {
-      return rejectWithValue(error || 'Failed to load pizzas');
+      return rejectWithValue(error as Error);
     }
   },
 );
@@ -27,7 +44,7 @@ export const fetchPizzas = createAsyncThunk(
 //   },
 // );
 
-const initialState = {
+const initialState: PizzasState = {
   items: [],
   loading: true,
   error: null,
@@ -49,7 +66,7 @@ const pizzasSlice = createSlice({
       })
       .addCase(fetchPizzas.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload ? action.payload : new Error('Failed to load pizzas');
         state.items = [];
       });
   },

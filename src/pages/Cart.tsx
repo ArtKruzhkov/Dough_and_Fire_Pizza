@@ -1,31 +1,17 @@
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '../hooks/hooks';
 import { selectTotalCount, selectTotalPrice } from '../slices/cartSlice';
 import { clearCart } from '../slices/cartSlice';
 
 import CartItem from '../components/CartItem';
 import CartEmpty from './CartEmpty';
 
-type CartItemType = {
-  id: number;
-  name: string;
-  price: number;
-  imageUrl: string;
-  type: number;
-  typeLabel: string;
-  size: number;
-  count: number;
-};
-
-type ItemsObjectType = Record<string, CartItemType>;
-
 function Cart() {
-  // @ts-ignore
-  const itemsObj = useSelector((state) => state.cart.items || {}) as ItemsObjectType;
-  const totalCount = useSelector(selectTotalCount);
-  const totalPrice = useSelector(selectTotalPrice);
+  const itemsObj = useAppSelector((state) => state.cart.items || {});
+  const totalCount = useAppSelector(selectTotalCount);
+  const totalPrice = useAppSelector(selectTotalPrice);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleClearCart = () => {
     dispatch(clearCart());

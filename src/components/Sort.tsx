@@ -17,10 +17,11 @@ function Sort({ items, value, onChange }: SortProps) {
 
   useEffect(() => {
     const handleClickOutside = (e: PointerEvent) => {
-      if (!sortRef.current) {
+      const el = sortRef.current;
+      if (!el) {
         return;
       }
-      if (!sortRef.current.contains(e.target as Node)) {
+      if (!el.contains(e.target as Node)) {
         setIsVisible(false);
       }
     };

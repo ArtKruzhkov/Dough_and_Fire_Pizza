@@ -1,19 +1,18 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { selectTotalCount, selectTotalPrice } from '../slices/cartSlice';
-import { useDispatch } from 'react-redux';
 import { setSearchValue } from '../slices/filterSlice';
+import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 
 import pizzaLogo from '../assets/img/pizza-logo.svg';
 import Search from './Search';
 
 function Header() {
-  const totalCount = useSelector(selectTotalCount);
-  const totalPrice = useSelector(selectTotalPrice);
+  const totalCount = useAppSelector(selectTotalCount);
+  const totalPrice = useAppSelector(selectTotalPrice);
 
   const location = useLocation();
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <header className="header">

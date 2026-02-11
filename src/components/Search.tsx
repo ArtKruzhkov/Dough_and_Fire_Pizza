@@ -1,13 +1,13 @@
-import { useSelector, useDispatch } from 'react-redux';
 import { setSearchValue } from '../slices/filterSlice';
 import { useRef, useEffect, useState } from 'react';
+import { useAppSelector, useAppDispatch } from '../hooks/hooks';
+
 import { ReactComponent as SearchIcon } from '../assets/img/search_icon.svg';
 import { ReactComponent as CloseIcon } from '../assets/img/input_close_icon.svg';
 
 function Search() {
-  // @ts-ignore
-  const searchValue = useSelector((s) => s.filter.searchValue) as string;
-  const dispatch = useDispatch();
+  const searchValue = useAppSelector((s) => s.filter.searchValue);
+  const dispatch = useAppDispatch();
 
   const [local, setLocal] = useState<string>(searchValue);
   const inputEl = useRef<HTMLInputElement>(null);
