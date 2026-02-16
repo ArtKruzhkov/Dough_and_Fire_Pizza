@@ -49,7 +49,7 @@ The project uses Redux Toolkit with:
 
 ## Clone the repository:
 
-git clone https://github.com/your-username/react-pizza.git
+git clone https://github.com/ArtKruzhkov/Dough_and_Fire_Pizza.git
 cd react-pizza
 
 ## Install dependencies:
