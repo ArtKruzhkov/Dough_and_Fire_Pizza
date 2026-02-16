@@ -41,7 +41,8 @@ function CartItem({ id, title, size, type, typeLabel, imageUrl, price, count }: 
         </p>
       </div>
       <div className="cart__item-count">
-        <div
+        <button
+          disabled={count === 1}
           className="button button--outline button--circle cart__item-count-minus"
           onClick={handleDecrement}>
           <svg
@@ -59,9 +60,9 @@ function CartItem({ id, title, size, type, typeLabel, imageUrl, price, count }: 
               fill="#EB5A1E"
             />
           </svg>
-        </div>
+        </button>
         <b>{count}</b>
-        <div
+        <button
           className="button button--outline button--circle cart__item-count-plus"
           onClick={handleIncrement}>
           <svg
@@ -79,13 +80,13 @@ function CartItem({ id, title, size, type, typeLabel, imageUrl, price, count }: 
               fill="#EB5A1E"
             />
           </svg>
-        </div>
+        </button>
       </div>
       <div className="cart__item-price">
         <b>{pizzasPrice}₽</b>
       </div>
       <div className="cart__item-remove" onClick={handleRemove}>
-        <div className="button button--outline button--circle">
+        <button className="button button--outline button--circle">
           <svg
             width="10"
             height="10"
@@ -101,7 +102,7 @@ function CartItem({ id, title, size, type, typeLabel, imageUrl, price, count }: 
               fill="#EB5A1E"
             />
           </svg>
-        </div>
+        </button>
       </div>
     </div>
   );

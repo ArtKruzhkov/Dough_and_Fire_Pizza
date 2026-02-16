@@ -14,7 +14,7 @@ type CartItemType = {
 
 type CartItemsMap = Record<string, CartItemType>;
 
-type CartState = {
+export type CartState = {
   items: CartItemsMap;
 };
 

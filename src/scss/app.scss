@@ -175,6 +175,27 @@ body {
             display: none;
           }
         }
+
+        &:disabled {
+          border-color: #dddddd;
+          background-color: transparent;
+          cursor: not-allowed;
+          opacity: 0.5;
+
+          svg {
+            path {
+              fill: #dddddd;
+            }
+          }
+
+          &:hover {
+            background-color: transparent;
+          }
+
+          &:active {
+            transform: none;
+          }
+        }
       }
 
       b {
