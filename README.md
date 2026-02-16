@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+# React Pizza
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern single-page pizza ordering application built with React, Redux Toolkit, and TypeScript.  
+The project demonstrates state management, async data fetching, filtering, sorting, pagination, and deployment to GitHub Pages.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- Dynamic pizza catalog loaded from a mock API
+- Category filtering
+- Sorting (rating, price, name)
+- Search by pizza name
+- Pagination
+- Cart management with quantity control
+- Full pizza details page
+- URL synchronization with filters and pagination
+- Fully typed Redux store and custom typed hooks
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Technologies Used
 
-### `npm test`
+- React 19
+- TypeScript
+- Redux Toolkit
+- React Redux
+- React Router
+- Axios
+- React Paginate
+- React Content Loader
+- Sass
+- Create React App
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## State Management
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The project uses Redux Toolkit with:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Typed slices (`cart`, `filter`, `pizzas`)
+- Async thunks for API requests
+- Custom typed hooks:
+  - `useAppDispatch`
+  - `useAppSelector`
+- Fully typed `RootState` and `AppDispatch`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Getting Started
 
-### `npm run eject`
+# Clone the repository:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+git clone https://github.com/your-username/react-pizza.git
+cd react-pizza
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Install dependencies:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+npm install
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# Start the development server:
 
-## Learn More
+npm start
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Open in your browser:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+http://localhost:3000
 
-### Code Splitting
+## Build for Production
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+npm run build
+The optimized production build will be generated in the build folder.
 
-### Analyzing the Bundle Size
+## Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+The project is configured for GitHub Pages deployment.
 
-### Making a Progressive Web App
+# To deploy:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+npm run deploy
+The predeploy script automatically runs:
 
-### Advanced Configuration
+npm run build
+before publishing the contents of the build folder to the gh-pages branch.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Live Demo
 
-### Deployment
+After deployment, the app will be available at:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+https://your-username.github.io/react-pizza
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Replace your-username with your actual GitHub username.
