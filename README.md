@@ -1,4 +1,4 @@
-# React Pizza
+# Dough and Fire Pizza
 
 A modern single-page pizza ordering application built with React, Redux Toolkit, and TypeScript.  
 The project demonstrates state management, async data fetching, filtering, sorting, pagination, and deployment to GitHub Pages.
@@ -85,6 +85,6 @@ before publishing the contents of the build folder to the gh-pages branch.
 
 After deployment, the app will be available at:
 
-https://your-username.github.io/react-pizza
+https://your-username.github.io/Dough_and_Fire_Pizza
 
 Replace your-username with your actual GitHub username.
