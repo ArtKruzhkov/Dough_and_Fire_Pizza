@@ -45,40 +45,40 @@ The project uses Redux Toolkit with:
   - `useAppSelector`
 - Fully typed `RootState` and `AppDispatch`
 
-## Getting Started
+# Getting Started
 
-# Clone the repository:
+## Clone the repository:
 
 git clone https://github.com/your-username/react-pizza.git
 cd react-pizza
 
-# Install dependencies:
+## Install dependencies:
 
 npm install
 
-# Start the development server:
+## Start the development server:
 
 npm start
 
-# Open in your browser:
+## Open in your browser:
 
 http://localhost:3000
 
 ## Build for Production
 
-npm run build
+npm run build<br>
 The optimized production build will be generated in the build folder.
 
 ## Deployment
 
 The project is configured for GitHub Pages deployment.
 
-# To deploy:
+## To deploy:
 
-npm run deploy
+npm run deploy<br>
 The predeploy script automatically runs:
 
-npm run build
+npm run build<br>
 before publishing the contents of the build folder to the gh-pages branch.
 
 ## Live Demo
