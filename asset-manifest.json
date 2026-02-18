@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/Dough_and_Fire_Pizza/static/css/main.a55c77d1.css",
+    "main.js": "/Dough_and_Fire_Pizza/static/js/main.e0c1c133.js",
+    "static/media/empty-cart.png": "/Dough_and_Fire_Pizza/static/media/empty-cart.db905d1f4b063162f25b.png",
+    "static/media/pizza-logo.svg": "/Dough_and_Fire_Pizza/static/media/pizza-logo.56ac87032d8f6fdf863326acd06c0d97.svg",
+    "index.html": "/Dough_and_Fire_Pizza/index.html",
+    "static/media/input_close_icon.svg": "/Dough_and_Fire_Pizza/static/media/input_close_icon.fd56bb53ce1b4a7247573b4fed204088.svg",
+    "static/media/search_icon.svg": "/Dough_and_Fire_Pizza/static/media/search_icon.e4f20a604735804d83726843ca11d6a4.svg",
+    "main.a55c77d1.css.map": "/Dough_and_Fire_Pizza/static/css/main.a55c77d1.css.map",
+    "main.e0c1c133.js.map": "/Dough_and_Fire_Pizza/static/js/main.e0c1c133.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a55c77d1.css",
+    "static/js/main.e0c1c133.js"
+  ]
+}
