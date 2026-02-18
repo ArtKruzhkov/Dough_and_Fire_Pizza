@@ -118,7 +118,7 @@ function Cart() {
           </span>
           <span>
             {' '}
-            Order total: <b>{totalPrice} ₽</b>{' '}
+            Order total: <b>{totalPrice} $</b>{' '}
           </span>
         </div>
         <div className="cart__bottom-buttons">

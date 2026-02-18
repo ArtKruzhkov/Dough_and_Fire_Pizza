@@ -65,7 +65,7 @@ function FullPizzaInfo() {
         </div>
 
         <div className="full-pizza__footer">
-          <div className="full-pizza__price">from {pizza.price} ₽</div>
+          <div className="full-pizza__price">from {pizza.price} $</div>
           <div className="full-pizza__actions">
             <Link className="button button--outline" to="/">
               <span>back to main page</span>

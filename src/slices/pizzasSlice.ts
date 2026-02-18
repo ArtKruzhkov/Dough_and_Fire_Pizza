@@ -32,18 +32,6 @@ export const fetchPizzas = createAsyncThunk<PizzaType[], void, { rejectValue: Er
   },
 );
 
-// export const fetchPizzaById = createAsyncThunk(
-//   'pizzas/fetchPizzaById',
-//   async (id, { rejectWithValue }) => {
-//     try {
-//       const res = await axios.get(`${APIpizzas}/${id}`);
-//       return res.data;
-//     } catch (error) {
-//       return rejectWithValue(error || 'Failed to load pizza by id');
-//     }
-//   },
-// );
-
 const initialState: PizzasState = {
   items: [],
   loading: true,

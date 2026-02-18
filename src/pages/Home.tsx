@@ -30,54 +30,12 @@ function Home() {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // Загрузка всех пицц
+  // Fetch pizzas on mount
   useEffect(() => {
     dispatch(fetchPizzas());
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   setError(null);
-
-  //   axios
-  //     .get(APIpizzas)
-  //     .then((res) => setAllPizzas(res.data))
-  //     .catch((e) => {
-  //       setError(e);
-  //       console.error(e.message);
-  //     })
-  //     .finally(() => setLoading(false));
-  // }, []);
-
-  // useEffect(() => {
-  //   let isCancelled = false;
-  //   setLoading(true);
-  //   setError(null);
-
-  //   (async () => {
-  //     try {
-  //       const res = await axios.get(APIpizzas);
-  //       if (!isCancelled) {
-  //         setAllPizzas(res.data);
-  //       }
-  //     } catch (e) {
-  //       if (!isCancelled) {
-  //         setError(e);
-  //         console.error(e.message);
-  //       }
-  //     } finally {
-  //       if (!isCancelled) {
-  //         setLoading(false);
-  //       }
-  //     }
-  //   })();
-
-  //   return () => {
-  //     isCancelled = true;
-  //   };
-  // }, []);
-
-  // 1) Инициализация из URL при монтировании
+  // 1) Initialize filters from URL on mount
   useEffect(() => {
     const cat = Number(searchParams.get('category') ?? 0);
     const sort = Number(searchParams.get('sortBy') ?? 0);
@@ -90,7 +48,7 @@ function Home() {
     dispatch(setSearchValue(q));
   }, [dispatch, searchParams]);
 
-  // 2) Ставим в URL при изменении фильтров/поиска/страницы
+  // 2) Update URL when filters change
   useEffect(() => {
     const params: Record<string, string> = {};
     if (activeCategory > 0) params.category = String(activeCategory);
@@ -101,7 +59,7 @@ function Home() {
     setSearchParams(params, { replace: true });
   }, [activeCategory, activeSort, currentPage, searchValue, setSearchParams]);
 
-  // Обработчики
+  // Handlers
   const handleChangeCategory = (i: number) => {
     dispatch(setActiveCategory(i));
     dispatch(setCurrentPage(1));
@@ -114,7 +72,7 @@ function Home() {
     dispatch(setCurrentPage(page));
   };
 
-  // Обработка данных: поиск -> категория -> сортировка
+  // Filtering, sorting and pagination
   const processedPizzas = useMemo(() => {
     let items = [...allPizzas];
 
@@ -122,13 +80,6 @@ function Home() {
     if (query) items = items.filter((p) => p.name?.toLowerCase().includes(query));
 
     if (activeCategory > 0) items = items.filter((p) => Number(p.category) === activeCategory);
-
-    // const sortMap = ['rating', 'price', 'name'];
-    // const sortBy = sortMap[activeSort] || 'rating';
-
-    // items.sort((a, b) =>
-    //   sortBy === 'name' ? a.name.localeCompare(b.name) : b[sortBy] - a[sortBy],
-    // );
 
     const sortMap = ['rating', 'price', 'name'] as const;
     const sortBy: (typeof sortMap)[number] = sortMap[activeSort] ?? 'rating';
@@ -146,7 +97,7 @@ function Home() {
     return processedPizzas.slice(start, start + PAGE_SIZE);
   }, [processedPizzas, currentPage]);
 
-  // Подрезка currentPage и скролл наверх
+  // Ensure currentPage and scroll
   useEffect(() => {
     if (pageCount === 0 && currentPage !== 1) {
       dispatch(setCurrentPage(1));

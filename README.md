@@ -1,5 +1,7 @@
 # Dough and Fire Pizza
 
+**[Live Demo](https://artkruzhkov.github.io/Dough_and_Fire_Pizza/)**
+
 A modern single-page pizza ordering application built with React, Redux Toolkit, and TypeScript.  
 The project demonstrates state management, async data fetching, filtering, sorting, pagination, and deployment to GitHub Pages.
 
@@ -44,6 +46,8 @@ The project uses Redux Toolkit with:
   - `useAppDispatch`
   - `useAppSelector`
 - Fully typed `RootState` and `AppDispatch`
+
+---
 
 # Getting Started
 

@@ -82,7 +82,7 @@ function PizzaBlock({ id, title, price, imageUrl, sizes, types }: PizzaBlockProp
         </ul>
       </div>
       <div className="pizza-block__bottom">
-        <div className="pizza-block__price">{price} ₽</div>
+        <div className="pizza-block__price">{price} $</div>
         <button
           className="button button--outline button--add"
           type="button"
