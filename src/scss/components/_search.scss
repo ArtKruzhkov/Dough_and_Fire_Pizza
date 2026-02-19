@@ -3,6 +3,14 @@
   align-items: center;
   position: relative;
   left: -100px;
+
+  @media (max-width: 1200px) {
+    left: 0;
+  }
+
+  @media (max-width: 952px) {
+    display: none;
+  }
 }
 
 .input-search {
